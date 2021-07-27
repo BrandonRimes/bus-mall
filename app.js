@@ -6,10 +6,11 @@ const selectionSection = document.getElementById('selection-section');
 const selectionGraphic = document.getElementById('graphic');
 const selectionDescription = document.getElementById('description');
 
-let clickCount = 3;
+let rounds = 3;
+let imgPerRound = 3;
 
 // functions, world wide ----------------
-function getRandomProductSet(howMany=3) {
+function getRandomProductSet(howMany=imgPerRound) {
   let numberSet = [];
   let productSet = [];
   while (howMany > 0) {
@@ -23,7 +24,7 @@ function getRandomProductSet(howMany=3) {
   return productSet;
 }
 
-function renderProductSet(howMany=3) {
+function renderProductSet(howMany=imgPerRound) {
   selectionGraphic.innerHTML = '';
   resultsSection.innerHTML = `
     <p>Click the product you would most like to see in BusMall</p>
@@ -39,8 +40,8 @@ function renderProductSet(howMany=3) {
     `;
     div.addEventListener('click', function() {
       product.favs++;
-      clickCount--;
-      if (clickCount > 0) {
+      rounds--;
+      if (rounds > 0) {
         renderProductSet();
       } else {
         selectionGraphic.innerHTML = '';
@@ -53,17 +54,21 @@ function renderProductSet(howMany=3) {
 }
 
 function renderResults() {
-  resultsSection.innerHTML = '';
-  let h2 = document.createElement('h2');
-  h2.innerHTML = 'Results';
-  resultsSection.appendChild(h2);
-  let ul = document.createElement('ul');
-  resultsSection.appendChild(ul);
-  for (let product of Product.all) {
-    let li = document.createElement('li');
-    li.innerHTML = `${product.name} - Seen: ${product.seen} - Selected: ${product.favs}`;
-    resultsSection.lastChild.appendChild(li);
-  }
+  resultsSection.innerHTML = '<button id="view-results">View Results</button>';
+  let viewResults = document.getElementById('view-results');
+  viewResults.addEventListener('click', function() {
+    resultsSection.innerHTML = '';
+    let h2 = document.createElement('h2');
+    h2.innerHTML = 'Results';
+    resultsSection.appendChild(h2);
+    let ul = document.createElement('ul');
+    resultsSection.appendChild(ul);
+    for (let product of Product.all) {
+      let li = document.createElement('li');
+      li.innerHTML = `${product.name} - Seen: ${product.seen} - Selected: ${product.favs}`;
+      resultsSection.lastChild.appendChild(li);
+    }
+  });
 }
 
 function renderDescription() {
@@ -78,8 +83,6 @@ function Product(name, imgPath) {
   this.imgPath = imgPath;
   this.seen = 0;
   this.favs = 0;
-
-  Product.all.push(this);
 }
 
 Product.all = [];
@@ -90,7 +93,7 @@ Product.all = [];
 // create objects -----------------------
 function factory() {
   for (let [name, imgPath] of productDirectory) {
-    new Product(name, imgPath);
+    Product.all.push(new Product(name, imgPath));
   }
 }
 

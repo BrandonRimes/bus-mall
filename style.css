@@ -56,6 +56,11 @@ article {
   line-height: 20px;
 }
 
+#view-results {
+  position: absolute;
+  top: 200px;
+}
+
 h2 {
   font-size: 1.5em;
   margin: 10px;
@@ -97,4 +102,6 @@ div:hover {
 #description {
   height: 40%;
   padding: 20px;
+  text-indent: 20px;
 }
+
