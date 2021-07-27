@@ -25,6 +25,9 @@ function getRandomProductSet(howMany=3) {
 
 function renderProductSet(howMany=3) {
   selectionGraphic.innerHTML = '';
+  resultsSection.innerHTML = `
+    <p>Click the product you would most like to see in BusMall</p>
+  `;
   let products = getRandomProductSet(howMany);
   for (let product of products) {
     let div = document.createElement('div');
@@ -50,6 +53,7 @@ function renderProductSet(howMany=3) {
 }
 
 function renderResults() {
+  resultsSection.innerHTML = '';
   let h2 = document.createElement('h2');
   h2.innerHTML = 'Results';
   resultsSection.appendChild(h2);
@@ -60,6 +64,12 @@ function renderResults() {
     li.innerHTML = `${product.name} - Seen: ${product.seen} - Selected: ${product.favs}`;
     resultsSection.lastChild.appendChild(li);
   }
+}
+
+function renderDescription() {
+  selectionDescription.innerHTML = `
+    <p>Small batch 90's raw denim subway tile blog, marfa pitchfork lo-fi master cleanse PBR&B poke heirloom gluten-free fixie prism. Keytar food truck viral vice, pour-over cardigan austin raclette drinking vinegar. Umami portland marfa hashtag tacos cronut paleo swag prism jianbing authentic kinfolk synth hot chicken drinking vinegar. Shoreditch actually master cleanse, church-key mustache prism intelligentsia offal affogato glossier hell of adaptogen vegan. PBR&B hella bitters, williamsburg DIY freegan crucifix paleo shoreditch edison bulb plaid keffiyeh.</p>
+  `;
 }
 
 // construction junction ----------------
@@ -109,3 +119,4 @@ const productDirectory = [
 // function calls -----------------------
 factory();
 renderProductSet();
+renderDescription();
