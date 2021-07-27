@@ -1,1 +1,52 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+header,
+main,
+section,
+article {
+  display: flex;
+  align-items: center;
+}
+
+header, footer {
+  border: 1px dotted darkorange;
+  width: 100%;
+  height: 10%;
+}
+
+main {
+  width: 100%;
+  height: 80%;
+}
+
+section {
+  border: 1px dotted deeppink;
+  flex-direction: column;
+}
+
+article {
+  border: 1px dotted deepskyblue;
+  width: 100%;
+  height: 45%;
+}
+
+#results-section {
+  width: 25%;
+  height: 100%;
+}
+
+#selection-section {
+  justify-content: space-between;
+  width: 75%;
+  height: 100%;
+}
 
