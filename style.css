@@ -24,6 +24,10 @@ header, footer {
   height: 10%;
 }
 
+h1 {
+  font-size: 2em;
+}
+
 main {
   width: 100%;
   height: 80%;
@@ -42,6 +46,15 @@ article {
 #results-section {
   width: 25%;
   height: 100%;
+  justify-content: space-evenly;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+li {
+  margin: 5px;
 }
 
 #selection-section {

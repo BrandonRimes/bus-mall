@@ -6,6 +6,8 @@ const selectionSection = document.getElementById('selection-section');
 const selectionGraphic = document.getElementById('graphic');
 const selectionDescription = document.getElementById('description');
 
+let clickCount = 3;
+
 // functions, world wide ----------------
 function getRandomProductSet(howMany=3) {
   let numberSet = [];
@@ -22,15 +24,41 @@ function getRandomProductSet(howMany=3) {
 }
 
 function renderProductSet(howMany=3) {
+  selectionGraphic.innerHTML = '';
   let products = getRandomProductSet(howMany);
   for (let product of products) {
     let div = document.createElement('div');
     div.className = 'graphic';
+    div.id = product.name;
     div.innerHTML = `
-      <img src=${product.imgPath}>
-      <h2>${product.name}</h2>
+      <img id=${product.name} src=${product.imgPath}>
+      <h2 id=${product.name}>${product.name}</h2>
     `;
+    div.addEventListener('click', function() {
+      product.favs++;
+      clickCount--;
+      if (clickCount > 0) {
+        renderProductSet();
+      } else {
+        selectionGraphic.innerHTML = '';
+        renderResults();
+      }
+    });
     selectionGraphic.appendChild(div);
+    product.seen++;
+  }
+}
+
+function renderResults() {
+  let h2 = document.createElement('h2');
+  h2.innerHTML = 'Results';
+  resultsSection.appendChild(h2);
+  let ul = document.createElement('ul');
+  resultsSection.appendChild(ul);
+  for (let product of Product.all) {
+    let li = document.createElement('li');
+    li.innerHTML = `${product.name} - Seen: ${product.seen} - Selected: ${product.favs}`;
+    resultsSection.lastChild.appendChild(li);
   }
 }
 
@@ -78,11 +106,6 @@ const productDirectory = [
   ['wine-glass','./img/wine-glass.jpg'],
 ];
 
-// LISTEN! ------------------------------
-
-
 // function calls -----------------------
 factory();
 renderProductSet();
-
-console.log();
