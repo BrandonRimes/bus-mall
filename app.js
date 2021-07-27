@@ -1,22 +1,37 @@
 'use strict';
 
 // variables, world wide ----------------
-
+const resultsSection = document.getElementById('results-section');
+const selectionSection = document.getElementById('selection-section');
+const selectionGraphic = document.getElementById('graphic');
+const selectionDescription = document.getElementById('description');
 
 // functions, world wide ----------------
-function getRandomProductSet(howMany = 3) {
+function getRandomProductSet(howMany=3) {
   let numberSet = [];
   let productSet = [];
   while (howMany > 0) {
     let rando = Math.floor(Math.random() * Product.all.length);
-    if (!(rando in numberSet)) {
+    if (!(numberSet.includes(rando))) {
       numberSet.push(rando);
       productSet.push(Product.all[rando]);
       howMany--;
     }
   }
-  console.log(numberSet);
   return productSet;
+}
+
+function renderProductSet(howMany=3) {
+  let products = getRandomProductSet(howMany);
+  for (let product of products) {
+    let div = document.createElement('div');
+    div.className = 'graphic';
+    div.innerHTML = `
+      <img src=${product.imgPath}>
+      <h2>${product.name}</h2>
+    `;
+    selectionGraphic.appendChild(div);
+  }
 }
 
 // construction junction ----------------
@@ -56,7 +71,7 @@ const productDirectory = [
   ['pet-sweep','./img/pet-sweep.jpg'],
   ['scissors','./img/scissors.jpg'],
   ['shark','./img/shark.jpg'],
-  ['sweep','./img/sweep.jpg'],
+  ['sweep','./img/sweep.png'],
   ['tauntaun','./img/tauntaun.jpg'],
   ['unicorn','./img/unicorn.jpg'],
   ['water-can','./img/water-can.jpg'],
@@ -68,6 +83,6 @@ const productDirectory = [
 
 // function calls -----------------------
 factory();
-getRandomProductSet();
+renderProductSet();
 
 console.log();
