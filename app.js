@@ -84,11 +84,11 @@ function renderDescription() {
 }
 
 // construction junction ----------------
-function Product(name, imgPath) {
+function Product(name, imgPath, seen=0, chosen=0) {
   this.name = name;
   this.imgPath = imgPath;
-  this.seen = 0;
-  this.chosen = 0;
+  this.seen = seen;
+  this.chosen = chosen;
 }
 
 Product.all = [];
@@ -175,14 +175,15 @@ function getResultsFromStorage() {
   try {
     let storedResults = JSON.parse(localStorage.getItem('results'));
     for (let result of storedResults) {
-      console.log(result);
+      Product.all.push(new Product(result.name, result.imgPath, result.seen, result.chosen));
     }
   } catch (error) {
     console.log('nothing in storage');
+    factory();
   }
 }
 // function calls -----------------------
-factory();
+
 getResultsFromStorage();
 renderProductSet();
 renderDescription();
