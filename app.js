@@ -50,6 +50,7 @@ function renderProductSet(howMany=imgPerRound) {
       } else {
         selectionGraphic.innerHTML = '';
         renderResults();
+        putResultsInStorage();
       }
     });
     selectionGraphic.appendChild(div);
@@ -126,9 +127,12 @@ const productDirectory = [
 
 // -- chart -----------------------------
 function makeChart() {
-  const ctx = document.createElement('CANVAS').getContext('2d');
+  const ctx = document.createElement('canvas');
   ctx.id = 'resultsChart';
-  selectionGraphic.innerHTML = ctx;
+  ctx.getContext('2d');
+  ctx.height = '100%';
+  selectionGraphic.appendChild(ctx);
+  // selectionGraphic.innerHTML = ctx; DONT DO THIS
   let productNames = [];
   let productSeen = [];
   let productChosen = [];
@@ -144,26 +148,41 @@ function makeChart() {
     data: {
       labels: productNames,
       datasets: [{
-        lebel: 'seen',
+        label: 'seen',
         backgroundColor: 'deeppink',
         data: productSeen
       },
       {
-        lebel: 'chosen',
+        label: 'chosen',
         backgroundColor: 'deepskyblue',
         data: productChosen
       },
       {
-        lebel: 'PerView',
-        backgroundColor: 'goldenrod',
+        label: 'PerView',
+        backgroundColor: '#FFE630',
         data: perView
       }]
     }
   });
 }
 
+// local storage ------------------------
+function putResultsInStorage() {
+  localStorage.setItem('results', JSON.stringify(Product.all));
+}
 
+function getResultsFromStorage() {
+  try {
+    let storedResults = JSON.parse(localStorage.getItem('results'));
+    for (let result of storedResults) {
+      console.log(result);
+    }
+  } catch (error) {
+    console.log('nothing in storage');
+  }
+}
 // function calls -----------------------
 factory();
+getResultsFromStorage();
 renderProductSet();
 renderDescription();
