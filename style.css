@@ -26,7 +26,59 @@ header, footer {
 }
 
 h1 {
-  font-size: 2em;
+  position: relative;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 4em;
+  font-weight: bolder;
+  letter-spacing: -6px;
+  height: 100%;
+  width: 400px;
+  text-align: center;
+  background-image: url('img/bus.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  color: transparent;
+  -webkit-text-stroke: 1px deeppink;
+  filter: drop-shadow(2px 2px 0px deepskyblue);
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: wheelsonthebus 6s linear infinite;
+}
+
+@keyframes wheelsonthebus {
+  0% {
+    background-position: -150%;
+  }
+  100% {
+    background-position: 250%;
+  }
+}
+
+span {
+  z-index: 2;
+}
+
+span:hover ~{
+  transform: translateY(-10px);
+}
+
+/* h1::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(rgba(255, 20, 145, 0.5), rgba(250, 235, 215, 0.5), rgba(0, 191, 255, 0.5));
+  z-index: -1;
+  animation: gradient-shift 1s linear infinite;
+} */
+
+@keyframes gradient-shift {
+  0% {
+    /* background: linear-gradient(deeppink, antiquewhite, deepskyblue); */
+  }
+  100% {
+    /* background: linear-gradient(deepskyblue, antiquewhite, deeppink); */
+  }
 }
 
 main {

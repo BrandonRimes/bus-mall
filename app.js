@@ -7,7 +7,7 @@ const selectionGraphic = document.getElementById('graphic');
 const selectionDescription = document.getElementById('description');
 // const ctx = document.getElementById('resultsChart');
 
-let rounds = 3;
+let rounds = 25;
 let imgPerRound = 3;
 let descriptionText = `Small batch 90's raw denim subway tile blog, marfa pitchfork lo-fi master cleanse PBR&B poke heirloom gluten-free fixie prism. Keytar food truck viral vice, pour-over cardigan austin raclette drinking vinegar. Umami portland marfa hashtag tacos cronut paleo swag prism jianbing authentic kinfolk synth hot chicken drinking vinegar. Shoreditch actually master cleanse, church-key mustache prism intelligentsia offal affogato glossier hell of adaptogen vegan. PBR&B hella bitters, williamsburg DIY freegan crucifix paleo shoreditch edison bulb plaid keffiyeh. ${imgPerRound}`;
 let previousSet = [];
