@@ -43,6 +43,7 @@ h1 {
   filter: drop-shadow(2px 2px 0px deepskyblue);
   background-clip: text;
   -webkit-background-clip: text;
+  animation: wheelsonthebus 6s linear infinite;
 }
 
 @keyframes wheelsonthebus {
