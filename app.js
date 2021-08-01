@@ -13,6 +13,9 @@ let descriptionText = `Small batch 90's raw denim subway tile blog, marfa pitchf
 let previousSet = [];
 
 // functions, world wide ----------------
+
+// create array of random numbers, no repeats
+// use random numbers array to get product at corresponding index
 function getRandomProductSet(howMany=imgPerRound) {
   let numberSet = [];
   let productSet = [];
@@ -28,6 +31,8 @@ function getRandomProductSet(howMany=imgPerRound) {
   return productSet;
 }
 
+// render elements
+// render new product set after each selection
 function renderProductSet(howMany=imgPerRound) {
   selectionGraphic.innerHTML = '';
   resultsSection.innerHTML = `
@@ -58,6 +63,7 @@ function renderProductSet(howMany=imgPerRound) {
   }
 }
 
+// render result elements after product selection rounds
 function renderResults() {
   resultsSection.innerHTML = '<button id="view-results">View Results</button>';
   let viewResults = document.getElementById('view-results');
@@ -77,6 +83,7 @@ function renderResults() {
   });
 }
 
+// render page-bottom text
 function renderDescription() {
   selectionDescription.innerHTML = `
     <p>${descriptionText}</p>
